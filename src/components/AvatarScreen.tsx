@@ -190,6 +190,7 @@ const AvatarScreen: React.FC = () => {
               position: [0, 0, 6],
               fov: 50,
             }}
+            events={() => ({} as any)}
             gl={{
               powerPreference: 'default',
               antialias: false,
