@@ -12,16 +12,11 @@ end
 
 # Use it to require both react-native's and this package's scripts:
 node_require('react-native/scripts/react_native_pods.rb')
-node_require('react-native-permissions/scripts/setup.rb')
 
 platform :ios, min_ios_version_supported
 prepare_react_native_project!
 
-# Setup permissions for your voice chat app
-setup_permissions([
-  'Microphone',        # Required for voice chat
-  'Notifications',     # For call notifications
-])
+
 
 linkage = ENV['USE_FRAMEWORKS']
 if linkage != nil
@@ -68,14 +63,5 @@ target 'chatterBuddy' do
       :mac_catalyst_enabled => false,
       # :ccache_enabled => true
     )
-
-    # React Native Vector Icons configuration
-    installer.pods_project.targets.each do |target|
-      if target.name == 'RNVectorIcons'
-        target.build_configurations.each do |config|
-          config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '15.1'
-        end
-      end
-    end
   end
 end
